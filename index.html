@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ========================================================================= -->
+    <!-- 🏫 TÍTULO Y METADATOS OFICIALES                                           -->
+    <!-- ========================================================================= -->
+    <title>EduToken LMS | Colegio Departamental San Francisco de Asís</title>
+    <meta name="description" content="Plataforma educativa modular basada en llaves de acceso, con estética adaptativa para primaria y secundaria, exámenes con rúbrica y certificación digital oficial." />
+    <meta property="og:title" content="EduToken LMS | Plataforma Educativa" />
+    <meta property="og:description" content="Portal académico sin contraseñas para 11 grados escolares y 3 periodos académicos." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Tipografías web oficiales -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Script de máxima compatibilidad para Google Chrome y protección contra extensiones -->
+    <script>
+      (function() {
+        var isChromeExtensionError = function(msg, source, err) {
+          var text = (msg || '') + ' ' + (source || '') + ' ' + (err && err.stack ? err.stack : '');
+          return text.indexOf('chrome-extension://') !== -1 ||
+                 text.indexOf('Cannot set property fetch') !== -1 ||
+                 text.indexOf('has only a getter') !== -1;
+        };
+
+        window.addEventListener('error', function(event) {
+          if (
+            (event.filename && event.filename.indexOf('chrome-extension://') !== -1) ||
+            (event.message && (
+              event.message.indexOf('chrome-extension://') !== -1 ||
+              event.message.indexOf('fetch') !== -1 ||
+              event.message.indexOf('has only a getter') !== -1
+            )) ||
+            (event.error && isChromeExtensionError('', '', event.error))
+          ) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event.reason;
+          var text = (reason && (reason.stack || reason.message)) ? (reason.stack || reason.message) : String(reason);
+          if (text.indexOf('chrome-extension://') !== -1 || text.indexOf('Cannot set property fetch') !== -1 || text.indexOf('has only a getter') !== -1) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+          }
+        }, true);
+
+        var prevOnError = window.onerror;
+        window.onerror = function(msg, url, line, col, err) {
+          if (isChromeExtensionError(msg, url, err)) {
+            return true;
+          }
+          if (typeof prevOnError === 'function') {
+            return prevOnError.apply(this, arguments);
+          }
+          return false;
+        };
+
+        try {
+          var _rawFetch = window.fetch ? window.fetch.bind(window) : function() {
+            return Promise.reject(new Error('Fetch no disponible'));
+          };
+          var _activeFetch = _rawFetch;
+
+          var descriptor = {
+            get: function() {
+              return _activeFetch;
+            },
+            set: function(fn) {
+              if (typeof fn === 'function') {
+                _activeFetch = fn;
+              }
+            },
+            configurable: true,
+            enumerable: true
+          };
+
+          try {
+            Object.defineProperty(window, 'fetch', descriptor);
+          } catch (e1) {}
+
+          try {
+            if (window.Window && window.Window.prototype) {
+              Object.defineProperty(window.Window.prototype, 'fetch', descriptor);
+            }
+          } catch (e2) {}
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Configuración del colegio editable -->
+    <script>
+      window.EDUTOKEN_HTML_CONFIG = {
+        institutionName: "Colegio Departamental San Francisco de Asís",
+        rectorName: "Dra. Elena Vargas Solano",
+        rectorTitle: "Rectora General & Vicerrectoría Académica",
+        signatureText: "Firma Digital Autorizada - Resolución MEN N° 4812-2024",
+        legalText: "Certifica formalmente que el(la) estudiante culminó y aprobó con éxito los logros curriculares correspondientes a la asignatura evaluada, de acuerdo a las directrices pedagógicas oficiales.",
+        logoEmoji: "🎓",
+        brandName: "EduToken LMS",
+        appTitle: "EduToken LMS",
+        appSubtitle: "Portal de acceso académico sin contraseñas",
+        additionalKeys: []
+      };
+    </script>
+  </head>
+
+  <body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+    <!-- Contenedor raíz donde se monta la aplicación React -->
+    <div id="root"></div>
+
+    <noscript>
+      <div style="padding: 2rem; font-family: sans-serif; text-align: center; max-width: 600px; margin: 2rem auto; border: 1px solid #e2e8f0; border-radius: 1rem;">
+        <h2 style="color: #1e3a8a;">JavaScript es requerido</h2>
+        <p style="color: #64748b;">Para ingresar a EduToken LMS, por favor habilita JavaScript en tu navegador.</p>
+      </div>
+    </noscript>
+
+    <!-- Punto de entrada de la aplicación React completa -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
